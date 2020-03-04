@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+
+namespace VGCTechnicalExam
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter Name : ");
+
+            List<string> finalNameList = new List<string>(); 
+            string nameInput = "";
+
+            nameInput = Console.ReadLine();
+
+            while (nameInput != "")
+            {
+                foreach (var item in finalNameList)
+                {
+                   if(item == nameInput)
+                    {
+                        Console.WriteLine("This name already Exists enter new Name");
+                    }
+                }
+
+                finalNameList.Add(nameInput);
+
+                nameInput = Console.ReadLine();
+            }
+
+            if(nameInput == "")
+            {
+                int rdm = new Random().Next(finalNameList.Count);
+                Console.WriteLine("The Generated Random Name from List is : " + finalNameList[rdm] + Environment.NewLine);
+                finalNameList.RemoveAt(rdm);
+                foreach (var item in finalNameList)
+                {
+                    Console.WriteLine(item);
+                }
+
+                while (finalNameList.Count > 0)
+                {
+                    int rd = new Random().Next(finalNameList.Count);
+                    Console.WriteLine("The Generated Random Name from List is : " + finalNameList[rd] + Environment.NewLine);
+                    finalNameList.RemoveAt(rd);
+                    foreach (var item in finalNameList)
+                    {
+                        Console.WriteLine(item);
+                    }
+                }
+                if (finalNameList.Count == 0)
+                {
+                    Console.WriteLine(Environment.NewLine);
+                    Console.WriteLine("Name List is Empty");
+                }
+
+            }
+        }
+    }
+}
